@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Morgenrapport</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column for phone, dated masthead, sections as plain blocks with a market strip */
+:root {
+  --bg: #f5f6f4;
+  --surface: #ffffff;
+  --fg: #1b2024;
+  --muted: #5d676e;
+  --rule: #d9ddda;
+  --accent: #0f5c63;
+  --up: #1f7a45;
+  --down: #b3392f;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12171a; --surface: #1a2125; --fg: #e4e8e6; --muted: #98a3a8;
+    --rule: #2c353a; --accent: #5fb8bf; --up: #5cc488; --down: #ee7c70; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12171a; --surface: #1a2125; --fg: #e4e8e6; --muted: #98a3a8;
+  --rule: #2c353a; --accent: #5fb8bf; --up: #5cc488; --down: #ee7c70; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 42rem; margin: 0 auto; padding-inline: 18px; padding-block: 28px 56px; display: flex; flex-direction: column; gap: 28px; }
+header { display: flex; flex-direction: column; gap: 6px; border-bottom: 2px solid var(--fg); padding-bottom: 14px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(2rem, 7vw, 2.6rem); line-height: 1.1; margin: 0; text-wrap: balance; }
+.note { color: var(--muted); font-size: 14px; margin: 0; }
+section { display: flex; flex-direction: column; gap: 10px; }
+h2 { font-family: var(--display); font-weight: 600; font-size: 1.35rem; margin: 0; display: flex; align-items: baseline; gap: 10px; }
+h2 .n { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 400; }
+ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
+li { padding-block: 10px; border-top: 1px solid var(--rule); }
+li:first-child { border-top: 0; padding-top: 2px; }
+li b { font-weight: 600; }
+.src { color: var(--muted); font-size: 13px; }
+.markets { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 4px 14px; }
+.markets li { display: flex; justify-content: space-between; gap: 12px; font-variant-numeric: tabular-nums; }
+.markets .k { font-weight: 500; }
+.markets .v { font-family: var(--mono); font-size: 14px; text-align: right; }
+.up { color: var(--up); } .down { color: var(--down); }
+.sources details { border-top: 1px solid var(--rule); padding-top: 12px; }
+.sources summary { cursor: pointer; font-weight: 500; color: var(--accent); }
+.sources ul { margin-top: 8px; }
+.sources li { font-size: 14px; padding-block: 6px; overflow-wrap: anywhere; }
+a { color: var(--accent); }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+footer { color: var(--muted); font-size: 13px; }
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="wrap">
+<!--RAPPORT-START-->
+<header>
+  <span class="eyebrow">Morgenrapport · onsdag 7. oktober 2026</span>
+  <h1>Budsjettdag med skattekutt, ny S&amp;P-rekord og Sverige sender Patriot til Polen</h1>
+  <p class="note">Siste døgn frem til kl. 08.00. Børstall er tirsdagens sluttkurser; valuta fra Norges Bank 6. okt. Finansavisen (sperret), NRK, BBC og Reuters.com var ikke tilgjengelige – Reuters/Bloomberg/FT-saker er hentet via DN, E24 og andre gjengivelser.</p>
+</header>
+
+<section>
+  <h2><span class="n">1</span>Finans og økonomi</h2>
+  <ul>
+    <li><b>Statsbudsjettet 2027 legges frem i dag:</b> Regjeringen foreslår å kutte inntektsskatten med 6,4 mrd. kr – det største kuttet på 20 år – via høyere personfradrag og lavere trygdeavgift. Finansieres blant annet ved å tette skattehull og fase ut elbilfordeler innen 2028. <span class="src">E24, DN</span></li>
+    <li><b>Renteutgiftene</b> til norske familier har nesten doblet seg, viser E24s gjennomgang. <span class="src">E24</span></li>
+    <li><b>USA-renter:</b> 10-årsrenten falt 3,6 bp til 5,275 % etter mandagens høyeste nivå siden 2002, og lavere oljepris løftet aksjene. <span class="src">DN, TheStreet</span></li>
+    <li><b>Flytrafikk:</b> Norse Atlantic fraktet 32 % færre passasjerer i september, men enhetsinntekten steg 35 % på egne ruter. Norwegian fraktet 2,4 mill. passasjerer. <span class="src">E24</span></li>
+    <li><b>AI-advarsel:</b> En forvalter advarer om at AI-gigantene utgjør en stadig større andel av nordmenns favorittfond. <span class="src">E24</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">2</span>M&amp;A og private equity</h2>
+  <ul>
+    <li><b>Wallenius Wilhelmsen</b> har fullført emisjonen på 300 mill. dollar (2,9 mrd. kr) til 168 kr per aksje for å finansiere nybyggingsprogrammet. <span class="src">E24</span></li>
+    <li><b>Northern Ocean</b> (Fredriksen) har hentet 686 mill. kr ved salg av 105,5 mill. aksjer à 6,50 kr. Tor Olav Trøim kjøper samtidig 1,5 mill. Borr-aksjer for ca. 61 mill. kr. <span class="src">E24</span></li>
+    <li><b>Datasenter-IPO:</b> Et norsk datasenterselskap vurderer børsnotering i Oslo. <span class="src">DN</span></li>
+    <li><b>SpaceX</b> er ifølge FT i samtaler om å låne rundt 40 mrd. dollar, med Apollo i spissen, for å kjøpe Nvidia-brikker. <span class="src">Bloomberg/FT, DN</span></li>
+    <li><b>Paramount</b> har fullført kjøpet av Warner Bros. Discovery for 81 mrd. dollar; selskapet ledes av David Ellison. <span class="src">AP</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">3</span>Markeder</h2>
+  <ul class="markets">
+    <li><span class="k">Oslo Børs (tir.)</span><span class="v down">−0,4 %</span></li>
+    <li><span class="k">S&amp;P 500</span><span class="v up">7 818,93 · +0,58 %</span></li>
+    <li><span class="k">Nasdaq</span><span class="v up">27 599,79 · +0,45 %</span></li>
+    <li><span class="k">Dow Jones</span><span class="v up">51 521,28 · +0,49 %</span></li>
+    <li><span class="k">Asia (bred indeks, i dag)</span><span class="v down">−0,6 %</span></li>
+    <li><span class="k">Brent (i morges)</span><span class="v up">101,5 $ · fra 98,67 $</span></li>
+    <li><span class="k">EUR/NOK</span><span class="v up">10,778 · +0,2 %</span></li>
+    <li><span class="k">USD/NOK</span><span class="v down">9,564 · −0,4 %</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">4</span>Norge og verden</h2>
+  <ul>
+    <li><b>Sverige sender Patriot-luftvern til Polen</b> med rundt 100 soldater, plassert øst i landet nær grensen mot Russland. Kunngjort av Kristersson på et hasteinnkalt pressemøte om sikkerhetssituasjonen. <span class="src">Aftenposten</span></li>
+    <li><b>Mulig pest i Sibir:</b> Trump vil snakke med Putin etter at en ansatt ved et forskningsinstitutt døde av en uforklart lungeinfeksjon. WHO vurderer risikoen utenfor Russland som svært lav. <span class="src">Aftenposten</span></li>
+    <li><b>USA–Russland:</b> Samtalen kommer mens Trump-administrasjonen nærmer seg fristen 18. oktober for mulige sanksjoner. <span class="src">Aftenposten</span></li>
+    <li><b>Tennessee:</b> Henrettelsesforsøket av Christa Pike mislyktes, og hun er ved bevissthet. <span class="src">Aftenposten</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">5</span>Sport</h2>
+  <ul>
+    <li><b>U21:</b> Norge–Israel 1–1 i Stavanger tirsdag. Moi utlignet, og Norge er allerede klar for EM. <span class="src">NRK</span></li>
+    <li><b>NFF mot Fifa:</b> Fotballforbundet har sendt en omfattende klage og vil ha Infantino etterforsket. <span class="src">NRK</span></li>
+    <li><b>Landslaget:</b> Caroline Graham Hansen melder forfall med skade. <span class="src">NRK</span></li>
+  </ul>
+</section>
+
+<section class="sources">
+  <details>
+    <summary>Kilder</summary>
+    <ul>
+      <li><a href="https://e24.no/norsk-oekonomi/i/0BV9bo/statsbudsjett-2027-regjeringen-foreslaar-skattekutt-paa-6-4-milliarder-kroner">E24: Skattekutt på 6,4 mrd.</a></li>
+      <li><a href="https://www.dn.no/politikk/regjeringen-vil-kutte-64-milliarder-i-inntektsskatten/2-1-2054656">DN: Kutt i inntektsskatten</a></li>
+      <li><a href="https://e24.no/norsk-oekonomi/i/p1LeQ6/renteutgiftene-til-familien-har-nesten-doblet-seg-alt-kommer-paa-en-gang">E24: Renteutgiftene nesten doblet</a></li>
+      <li><a href="https://e24.no/boers-og-finans/i/Gra1mq/advarer-om-ai-aksjer-da-gaar-det-ordentlig-daarlig">E24: Advarer om AI-aksjer</a></li>
+      <li><a href="https://e24.no/bors/nyheter">E24 Børs: Wallenius Wilhelmsen, Northern Ocean, Borr, Norse, Asia, Brent, Oslo Børs</a></li>
+      <li><a href="https://www.dn.no/bors/nye-rekorder-pa-wall-street-de-lange-rentene-falt/2-1-2054469">DN: Nye rekorder på Wall Street</a></li>
+      <li><a href="https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-06-2026">TheStreet: Sluttkurser 6. okt.</a></li>
+      <li><a href="https://www.dn.no/bors/datasenter/norsk-datasenterselskap-vurderer-borsnotering-i-oslo/2-1-2054583">DN: Datasenterselskap vurderer børsnotering</a></li>
+      <li><a href="https://www.bloomberg.com/news/articles/2026-10-06/spacex-seeking-to-raise-40-billion-to-buy-nvidia-chips-ft-says">Bloomberg: SpaceX vil låne 40 mrd. dollar</a></li>
+      <li><a href="https://www.npr.org/2026/10/06/nx-s1-5988283/paramount-warner-bros-skydance-merger-david-ellison">AP/NPR: Paramount–Warner fullført</a></li>
+      <li><a href="https://www.aftenposten.no/verden/i/MALagm/sverige-sender-patriot-luftvern-til-polen">Aftenposten: Sverige sender Patriot til Polen</a></li>
+      <li><a href="https://www.aftenposten.no/verden/i/kvEX1a/trump-skal-snakke-med-putin-om-mulig-pesttilfelle-i-russland">Aftenposten: Trump–Putin om mulig pest</a></li>
+      <li><a href="https://www.aftenposten.no/verden/i/Krnb4y/henrettelsesforsoeket-i-tennessee-christa-pike-er-vaaken">Aftenposten: Henrettelsesforsøket i Tennessee</a></li>
+      <li><a href="https://data.norges-bank.no/api/data/EXR/B.USD+EUR.NOK.SP?lastNObservations=2&amp;format=csv-:-comma-false-y">Norges Bank: Valutakurser</a></li>
+      <li><a href="https://www.nrk.no/sport/moi-utlignet-da-norges-em-klare-u21-landslag-sendte-israel-ut-med-1-1-1.18047331">NRK: U21 Norge–Israel</a></li>
+      <li><a href="https://www.nrk.no/sport/nff-har-sendt-omfattende-klage-til-fifa-topper-_-vil-ha-etterforskning-av-infantino-1.18046718">NRK: NFF-klage til Fifa</a></li>
+      <li><a href="https://www.nrk.no/sport/landslagsstjernen-caroline-graham-hansen-melder-forfall-med-skade-1.18046647">NRK: Graham Hansen melder forfall</a></li>
+    </ul>
+  </details>
+</section>
+
+<footer>Oppdateres hver ukedag ca. kl. 08. Tidligere rapporter ligger i prosjektet «Nyheter».</footer>
+<!--RAPPORT-END-->
+</div>
+</body>
+</html>
