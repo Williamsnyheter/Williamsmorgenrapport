@@ -3,72 +3,149 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Morgenrapport</title>
+<title>Williams morgenrapport</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: single reading column for phone, dated masthead, sections as plain blocks with a market strip */
+/* Layout: colored masthead + live market ticker, then a single reading column; each section has its own hue and icon tile, markets as a tile grid */
 :root {
-  --bg: #f5f6f4;
+  --bg: #f3f4f1;
   --surface: #ffffff;
-  --fg: #1b2024;
-  --muted: #5d676e;
-  --rule: #d9ddda;
+  --fg: #182024;
+  --muted: #5b666c;
+  --rule: #dde1dd;
+  --mast: #0e4a50;
+  --mast-fg: #f1f6f4;
+  --mast-muted: #a9c7c4;
   --accent: #0f5c63;
-  --up: #1f7a45;
+  --up: #1d7a44;
+  --up-bg: #e3f2e8;
   --down: #b3392f;
+  --down-bg: #f8e5e2;
+  --h1: #0f6a73;  /* finans */
+  --h2: #7a4fa3;  /* M&A */
+  --h3: #b26a12;  /* markeder */
+  --h4: #2d62b0;  /* verden */
+  --h5: #2f8a4c;  /* sport */
   --display: "Newsreader", Georgia, "Times New Roman", serif;
   --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #12171a; --surface: #1a2125; --fg: #e4e8e6; --muted: #98a3a8;
-    --rule: #2c353a; --accent: #5fb8bf; --up: #5cc488; --down: #ee7c70; color-scheme: dark;
+    --bg: #101518; --surface: #182024; --fg: #e5eae8; --muted: #97a3a8; --rule: #29333a;
+    --mast: #0b2f33; --mast-fg: #eef5f3; --mast-muted: #8fb3b0; --accent: #62bcc3;
+    --up: #5ccb8b; --up-bg: #15301f; --down: #f08276; --down-bg: #3a1c19;
+    --h1: #5fc0c8; --h2: #b896dc; --h3: #e3a34f; --h4: #7ea9ea; --h5: #6cc98a;
+    color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #12171a; --surface: #1a2125; --fg: #e4e8e6; --muted: #98a3a8;
-  --rule: #2c353a; --accent: #5fb8bf; --up: #5cc488; --down: #ee7c70; color-scheme: dark;
+  --bg: #101518; --surface: #182024; --fg: #e5eae8; --muted: #97a3a8; --rule: #29333a;
+  --mast: #0b2f33; --mast-fg: #eef5f3; --mast-muted: #8fb3b0; --accent: #62bcc3;
+  --up: #5ccb8b; --up-bg: #15301f; --down: #f08276; --down-bg: #3a1c19;
+  --h1: #5fc0c8; --h2: #b896dc; --h3: #e3a34f; --h4: #7ea9ea; --h5: #6cc98a;
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
-body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.55; }
-.wrap { max-width: 42rem; margin: 0 auto; padding-inline: 18px; padding-block: 28px 56px; display: flex; flex-direction: column; gap: 28px; }
-header { display: flex; flex-direction: column; gap: 6px; border-bottom: 2px solid var(--fg); padding-bottom: 14px; }
-.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
-h1 { font-family: var(--display); font-weight: 600; font-size: clamp(2rem, 7vw, 2.6rem); line-height: 1.1; margin: 0; text-wrap: balance; }
-.note { color: var(--muted); font-size: 14px; margin: 0; }
-section { display: flex; flex-direction: column; gap: 10px; }
-h2 { font-family: var(--display); font-weight: 600; font-size: 1.35rem; margin: 0; display: flex; align-items: baseline; gap: 10px; }
-h2 .n { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 400; }
-ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
-li { padding-block: 10px; border-top: 1px solid var(--rule); }
-li:first-child { border-top: 0; padding-top: 2px; }
-li b { font-weight: 600; }
-.src { color: var(--muted); font-size: 13px; }
-.markets { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 4px 14px; }
-.markets li { display: flex; justify-content: space-between; gap: 12px; font-variant-numeric: tabular-nums; }
-.markets .k { font-weight: 500; }
-.markets .v { font-family: var(--mono); font-size: 14px; text-align: right; }
-.up { color: var(--up); } .down { color: var(--down); }
-.sources details { border-top: 1px solid var(--rule); padding-top: 12px; }
-.sources summary { cursor: pointer; font-weight: 500; color: var(--accent); }
-.sources ul { margin-top: 8px; }
-.sources li { font-size: 14px; padding-block: 6px; overflow-wrap: anywhere; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.55; margin: 0; }
 a { color: var(--accent); }
-a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-footer { color: var(--muted); font-size: 13px; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+
+/* Masthead */
+.wrap { display: flex; flex-direction: column; }
+header { background: var(--mast); color: var(--mast-fg); padding-inline: 18px; padding-block: 26px 22px; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; }
+header > * { max-width: 42rem; width: 100%; margin-inline: auto; position: relative; }
+header::before { content: ""; position: absolute; inset: 0; background:
+  radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--mast-fg) 14%, transparent) 0 22%, transparent 23%),
+  radial-gradient(circle at 92% 8%, transparent 0 34%, color-mix(in srgb, var(--mast-fg) 8%, transparent) 34.5% 35%, transparent 35.5%),
+  radial-gradient(circle at 92% 8%, transparent 0 48%, color-mix(in srgb, var(--mast-fg) 6%, transparent) 48.5% 49%, transparent 49.5%);
+  pointer-events: none; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--mast-muted); }
+.brand svg { width: 22px; height: 22px; flex: none; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--mast-muted); }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(1.9rem, 7.2vw, 2.7rem); line-height: 1.08; margin: 0; text-wrap: balance; color: var(--mast-fg); }
+.note { color: var(--mast-muted); font-size: 13.5px; margin: 0; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px; }
+.stat { font-family: var(--mono); font-size: 12px; padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--mast-fg) 12%, transparent); color: var(--mast-fg); }
+
+/* Ticker */
+.ticker { background: var(--surface); border-bottom: 1px solid var(--rule); overflow: hidden; white-space: nowrap; font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+.ticker-track { display: inline-flex; gap: 28px; padding-block: 9px; padding-inline: 18px; animation: tick 45s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.tk { display: inline-flex; gap: 8px; align-items: baseline; }
+.tk b { font-weight: 600; color: var(--fg); }
+.tk .up { color: var(--up); } .tk .down { color: var(--down); }
+@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+/* Body column */
+.col { max-width: 42rem; width: 100%; margin: 0 auto; padding-inline: 18px; padding-block: 26px 56px; display: flex; flex-direction: column; gap: 34px; }
+section { display: flex; flex-direction: column; gap: 12px; --hue: var(--accent); }
+section:nth-of-type(1) { --hue: var(--h1); }
+section:nth-of-type(2) { --hue: var(--h2); }
+section:nth-of-type(3) { --hue: var(--h3); }
+section:nth-of-type(4) { --hue: var(--h4); }
+section:nth-of-type(5) { --hue: var(--h5); }
+h2 { font-family: var(--display); font-weight: 600; font-size: 1.45rem; margin: 0; display: flex; align-items: center; gap: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--hue); }
+h2 .n { display: none; }
+.ico { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; flex: none; background: color-mix(in srgb, var(--hue) 14%, var(--surface)); color: var(--hue); }
+.ico svg { width: 22px; height: 22px; }
+ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
+li { padding-block: 12px; border-top: 1px solid var(--rule); }
+li:first-child { border-top: 0; padding-top: 2px; }
+li b { font-weight: 600; color: var(--hue); }
+section li b { color: color-mix(in srgb, var(--hue) 75%, var(--fg)); }
+
+/* Lead story */
+li.lead { background: var(--surface); border: 1px solid var(--rule); border-left: 0; border-radius: 10px; padding: 16px 16px 14px; font-family: var(--display); font-size: 1.22rem; line-height: 1.38; box-shadow: 0 1px 0 var(--rule); position: relative; overflow: hidden; }
+li.lead::before { content: "Dagens viktigste"; display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--hue); margin-bottom: 6px; }
+li.lead b { font-weight: 700; }
+li.lead + li { border-top: 0; }
+
+/* Source chips */
+.src { display: inline-flex; flex-wrap: wrap; gap: 4px; vertical-align: 2px; margin-left: 4px; }
+.chip { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: .04em; padding: 2px 7px; border-radius: 5px; background: var(--chip-bg, var(--rule)); color: var(--chip-fg, var(--muted)); white-space: nowrap; }
+li.lead .src { font-family: var(--body); }
+
+/* Markets */
+.markets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.markets li { border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; font-variant-numeric: tabular-nums; min-width: 0; }
+.markets li:first-child { padding-top: 12px; }
+.markets .k { font-size: 13px; color: var(--muted); font-weight: 500; }
+.markets .k b { color: var(--fg); }
+.markets .v { font-family: var(--mono); font-size: 15px; font-weight: 600; overflow-wrap: anywhere; }
+.markets .v .main { display: inline; }
+.markets .v .sub { display: block; font-size: 12.5px; font-weight: 500; opacity: .9; }
+.markets li:first-child .v .sub { font-size: 13px; color: var(--muted); }
+.markets .v.up { color: var(--up); } .markets .v.down { color: var(--down); }
+.markets .v.up::before { content: "▲ "; font-size: 11px; }
+.markets .v.down::before { content: "▼ "; font-size: 11px; }
+.markets li:has(.v.up) { background: linear-gradient(180deg, var(--up-bg), var(--surface) 70%); }
+.markets li:has(.v.down) { background: linear-gradient(180deg, var(--down-bg), var(--surface) 70%); }
+.markets li:first-child { grid-column: 1 / -1; border: 2px solid var(--hue); }
+.markets li:first-child .k { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--hue); }
+.markets li:first-child .k b { color: var(--hue); }
+.markets li:first-child .v { font-size: 22px; }
+@media (max-width: 360px) { .markets { grid-template-columns: 1fr; } }
+
+/* Sources */
+.sources { gap: 0; }
+.sources details { border-top: 1px solid var(--rule); padding-top: 14px; }
+.sources summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+.sources ul { margin-top: 8px; }
+.sources li { font-size: 14px; padding-block: 7px; overflow-wrap: anywhere; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--rule); padding-top: 14px; }
 </style>
-<style>body{margin:0}</style>
 </head>
 <body>
 <div class="wrap">
 <!--RAPPORT-START-->
 <header>
-  <span class="eyebrow">Morgenrapport · onsdag 7. oktober 2026</span>
+  <span class="eyebrow">Williams morgenrapport · onsdag 7. oktober 2026</span>
   <h1>Budsjettdag med skattekutt, ny S&amp;P-rekord og Sverige sender Patriot til Polen</h1>
-  <p class="note">Siste døgn frem til kl. 08.00. Børstall er tirsdagens sluttkurser; valuta fra Norges Bank 6. okt. Finansavisen (sperret), NRK, BBC og Reuters.com var ikke tilgjengelige – Reuters/Bloomberg/FT-saker er hentet via DN, E24 og andre gjengivelser.</p>
+  <p class="note">Siste døgn frem til kl. 08.00 · børstall er tirsdagens sluttkurser.</p>
 </header>
 
 <section>
@@ -152,8 +229,117 @@ footer { color: var(--muted); font-size: 13px; }
   </details>
 </section>
 
-<footer>Oppdateres hver ukedag ca. kl. 08. Tidligere rapporter ligger i prosjektet «Nyheter».</footer>
+<footer>Williams morgenrapport · oppdateres hver ukedag ca. kl. 08.</footer>
 <!--RAPPORT-END-->
 </div>
+<script>
+(function () {
+  var wrap = document.querySelector('.wrap');
+  if (!wrap) return;
+  var header = wrap.querySelector('header');
+  var sections = Array.prototype.slice.call(wrap.querySelectorAll('section'));
+  var footer = wrap.querySelector('footer');
+
+  // Body column wrapper for sections + footer
+  var col = document.createElement('div');
+  col.className = 'col';
+  sections.forEach(function (s) { col.appendChild(s); });
+  if (footer) col.appendChild(footer);
+
+  // Market ticker under masthead
+  var mk = col.querySelector('.markets');
+  if (mk && header) {
+    var items = mk.querySelectorAll('li');
+    var html = '';
+    items.forEach(function (li) {
+      var k = li.querySelector('.k'), v = li.querySelector('.v');
+      if (!k || !v) return;
+      var cls = v.classList.contains('up') ? 'up' : v.classList.contains('down') ? 'down' : '';
+      var arrow = cls === 'up' ? '▲ ' : cls === 'down' ? '▼ ' : '';
+      html += '<span class="tk"><b>' + k.textContent + '</b><span class="' + cls + '">' + arrow + v.textContent + '</span></span>';
+    });
+    if (html) {
+      var t = document.createElement('div');
+      t.className = 'ticker';
+      t.setAttribute('aria-label', 'Markeder');
+      t.innerHTML = '<div class="ticker-track">' + html + html + '</div>';
+      header.after(t);
+      t.after(col);
+    } else { header.after(col); }
+  } else if (header) { header.after(col); } else { wrap.appendChild(col); }
+
+  // Split market values into main figure + secondary
+  if (mk) mk.querySelectorAll('.v').forEach(function (v) {
+    var parts = v.textContent.split(/\s+·\s+/);
+    if (parts.length > 1) {
+      v.innerHTML = '';
+      var m = document.createElement('span'); m.className = 'main'; m.textContent = parts[0];
+      var d = document.createElement('span'); d.className = 'sub'; d.textContent = parts.slice(1).join(' · ');
+      v.appendChild(m); v.appendChild(d);
+    }
+  });
+
+  // Section icons
+  var icons = {
+    finans: '<path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/>',
+    ma: '<path d="M7 7h10l-3-3M17 17H7l3 3"/><circle cx="5" cy="7" r="2"/><circle cx="19" cy="17" r="2"/>',
+    marked: '<path d="M3 17l5-6 4 3 6-8 3 3"/><path d="M3 21h18"/>',
+    verden: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',
+    sport: '<circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 5h-5L8 10z"/><path d="M12 3v4M21 10l-5 0M18 19l-3.5-4M6 19l3.5-4M3 10h5"/>',
+    kilder: '<path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8M8 18h5"/>'
+  };
+  function keyFor(txt) {
+    txt = txt.toLowerCase();
+    if (txt.indexOf('m&a') > -1 || txt.indexOf('equity') > -1) return 'ma';
+    if (txt.indexOf('marked') > -1) return 'marked';
+    if (txt.indexOf('verden') > -1 || txt.indexOf('norge') > -1) return 'verden';
+    if (txt.indexOf('sport') > -1) return 'sport';
+    return 'finans';
+  }
+  sections.forEach(function (s) {
+    var h = s.querySelector('h2');
+    if (!h) return;
+    var k = keyFor(h.textContent);
+    var span = document.createElement('span');
+    span.className = 'ico';
+    span.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + icons[k] + '</svg>';
+    h.insertBefore(span, h.firstChild);
+  });
+
+  // Lead story: first item in first section
+  var first = sections[0] && sections[0].querySelector('ul > li');
+  if (first) first.classList.add('lead');
+
+  // Source chips with a stable color per outlet
+  var palette = [['#dceff0','#0e5359'],['#ece3f6','#5c3a80'],['#f7ead6','#8a520c'],['#dfe8f7','#234f8f'],['#dff0e4','#245f37'],['#f6e0dc','#8f2f26']];
+  var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && document.documentElement.getAttribute('data-theme') !== 'light';
+  if (document.documentElement.getAttribute('data-theme') === 'dark') dark = true;
+  function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); }
+  document.querySelectorAll('.wrap section:not(.sources) .src').forEach(function (el) {
+    var parts = el.textContent.split(/\s*[,/]\s*/).filter(Boolean);
+    el.textContent = '';
+    parts.forEach(function (p) {
+      var c = palette[hash(p.toLowerCase()) % palette.length];
+      var chip = document.createElement('span');
+      chip.className = 'chip';
+      chip.textContent = p;
+      if (dark) { chip.style.setProperty('--chip-bg', c[1]); chip.style.setProperty('--chip-fg', c[0]); }
+      else { chip.style.setProperty('--chip-bg', c[0]); chip.style.setProperty('--chip-fg', c[1]); }
+      el.appendChild(chip);
+    });
+  });
+
+  // Stats pills: number of stories + reading time
+  if (header) {
+    var stories = wrap.querySelectorAll('section:not(.sources) ul:not(.markets) > li').length;
+    var words = (wrap.querySelector('.col') || wrap).textContent.split(/\s+/).length;
+    var mins = Math.max(1, Math.round(words / 220));
+    var st = document.createElement('div');
+    st.className = 'stats';
+    st.innerHTML = '<span class="stat">' + stories + ' saker</span><span class="stat">ca. ' + mins + ' min lesing</span>';
+    header.appendChild(st);
+  }
+})();
+</script>
 </body>
 </html>
